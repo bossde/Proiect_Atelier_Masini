@@ -55,6 +55,9 @@ double Mecanic::calcul_salariu() {
 void Mecanic::editare_angajat(char* s1, char* s2, int* s3, int* s4) {
     for(int i = 0; i < strlen(s1); i++){
         this->nume[i] = s1[i];
+    }
+
+    for(int i = 0; i < strlen(s2); i++){
         this->prenume[i] = s2[i];
     }
 
