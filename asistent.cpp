@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-Asistent::Asistent(){
+Asistent::Asistent():Angajat(){
     strcpy(nume, " ");
     strcpy(prenume, " ");
     for(int i = 0; i < 8; i++){

@@ -4,7 +4,7 @@
 #include <cstring>
 using namespace std;
 
-Mecanic::Mecanic() {
+Mecanic::Mecanic():Angajat {
     strcpy(nume, " ");
     strcpy(prenume, " ");
     for(int i = 0; i < 8; i++){
@@ -66,3 +66,4 @@ void Mecanic::editare_angajat(char* s1, char* s2, int* s3, int* s4) {
         this->data_nasterii[i] = s4[i];
     }
 }
+

@@ -8,4 +8,5 @@ public:
     void afisare();
     double calcul_salariu();
     void editare_angajat(char*, char* ,int* ,int* );
+    ~Director();
 };
