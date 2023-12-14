@@ -1,11 +1,13 @@
 #pragma once
 #include "interfata2.h"
+#include <stdbool.h>
 
 class Standard: public Masina{
-    char mod_transmisie[7];
+    bool este_automat;
 public:
     Standard() = default;
-    Standard(char* ,int ,int* ,bool);
-    double polita_asigurare();
-    double polita_asigurare_discount();
+    Standard(char* ,int ,int ,bool, bool);
+    void afisare();
+    double calcul_polita_asigurare();
+    double calcul_polita_asigurare_discount();
 };

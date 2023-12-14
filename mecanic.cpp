@@ -4,7 +4,7 @@
 #include <cstring>
 using namespace std;
 
-Mecanic::Mecanic():Angajat {
+Mecanic::Mecanic():Angajat(){
     strcpy(nume, " ");
     strcpy(prenume, " ");
     for(int i = 0; i < 8; i++){
