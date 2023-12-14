@@ -37,7 +37,7 @@ int main() {
 
     vec2[0] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,true);
     vec2[0]->afisare();
-    vec2[1] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,false);
+    vec2[1] = new Camion(ID,nr_km,anul_fabricatiei,este_diesel,tonaj);
     vec2[1]->afisare();
 
     return 0;
