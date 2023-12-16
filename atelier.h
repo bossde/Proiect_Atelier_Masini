@@ -12,12 +12,13 @@ class Atelier{
     int numAngajati;
     int numMasini;
     int numMasiniAsteptare;
+    void AdaugaMasina(Masina* ,bool );
 
 public:
-    Atelier();
     void AdaugaAngajat(Angajat* );
-    void AdaugaMasina(Masina* ,bool );
+    Atelier();
     void AdaugaMasinaAsteptare(Masina* ,bool );
     void DeschideAtelier(Angajat* );
+    void LuareInPrimireMasini(Masina* ,Masina* ,Masina*, Masina*, bool raman);
     ~Atelier();
 };

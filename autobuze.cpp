@@ -1,5 +1,6 @@
 #include "autobuze.h"
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 Autobuz::Autobuz(char* ID_citit, int anul_fabricatiei_citit, int nr_kilometri_citit , bool este_diesel_citit, int nr_locuri_citit) {
@@ -35,7 +36,9 @@ void Autobuz::afisare() {
 }
 
 double Autobuz::calcul_polita_asigurare() {
-    double valoare_polita = (2023 - anul_fabricatiei) * 200;
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    double valoare_polita = ((tm.tm_year + 1900) - anul_fabricatiei) * 200;
 
     if(este_motor_diesel == 1){
         valoare_polita = valoare_polita + 1000;
@@ -59,4 +62,8 @@ double Autobuz::calcul_polita_asigurare_discount() {
     double discount = valoare_polita_discount / 10;
 
     return valoare_polita_discount - discount;
+}
+
+const string Autobuz::tipMasina() const {
+    return "Autobuz";
 }

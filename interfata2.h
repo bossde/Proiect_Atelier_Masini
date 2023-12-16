@@ -9,5 +9,6 @@ public:
     virtual void afisare() = 0;
     virtual double calcul_polita_asigurare() = 0;
     virtual double calcul_polita_asigurare_discount() = 0;
+    virtual const string tipMasina() const = 0;
     virtual ~Masina(){};
 };

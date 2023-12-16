@@ -1,7 +1,6 @@
 #include "asistent.h"
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 Asistent::Asistent():Angajat(){
     strcpy(nume, " ");
@@ -34,21 +33,21 @@ double Asistent::calcul_salariu() {
 }
 
 void Asistent::afisare() {
-    cout << "Nume: " << this->nume << endl;
-    cout << "Prenume: " << this->prenume << endl;
-    cout << "Data Nasterii: ";
+    std :: cout << "Nume: " << this->nume << endl;
+    std :: cout << "Prenume: " << this->prenume << endl;
+    std :: cout << "Data Nasterii: ";
     for(int i = 0; i < 8; i++){
-        cout << this->data_nasterii[i];
+        std :: cout << this->data_nasterii[i];
     }
-    cout << endl;
-    cout << "Data Angajarii: ";
+    std :: cout << std :: endl;
+    std :: cout << "Data Angajarii: ";
     for(int i = 0; i < 8; i++){
-        cout << this->data_angajarii[i];
+        std :: cout << this->data_angajarii[i];
     }
-    cout << endl;
-    cout << "ID: ";
-    cout << this->id;
-    cout << endl;
+    std :: cout << std :: endl;
+    std :: cout << "ID: ";
+    std :: cout << this->id;
+    std :: cout << std :: endl;
 }
 
 void Asistent::editare_angajat(char* nume_nou, char* prenume_nou, int* data_nasterii_noua, int* data_angajarii_noua) {

@@ -2,7 +2,6 @@
 #include "interfata1.h"
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 Mecanic::Mecanic():Angajat(){
     strcpy(nume, " ");
@@ -25,21 +24,21 @@ Mecanic::Mecanic(char* nume_tast, char* prenume_tast, int* data_nast_tast, int* 
 }
 
 void Mecanic::afisare() {
-    cout << "Nume: " << this->nume << endl;
-    cout << "Prenume: " << this->prenume << endl;
-    cout << "Data Nasterii: ";
+    std :: cout << "Nume: " << this->nume << std:: endl;
+    std :: cout << "Prenume: " << this->prenume << std :: endl;
+    std :: cout << "Data Nasterii: ";
     for(int i = 0; i < 8; i++){
-        cout << this->data_nasterii[i];
+        std :: cout << this->data_nasterii[i];
     }
-    cout << endl;
-    cout << "Data Angajarii: ";
+    std :: cout << std :: endl;
+    std :: cout << "Data Angajarii: ";
     for(int i = 0; i < 8; i++){
-        cout << this->data_angajarii[i];
+        std :: cout << this->data_angajarii[i];
     }
-    cout << endl;
-    cout << "ID: ";
-    cout << this->id;
-    cout << endl;
+    std :: cout << std :: endl;
+    std :: cout << "ID: ";
+    std :: cout << this->id;
+    std :: cout << std :: endl;
 }
 
 double Mecanic::calcul_salariu() {

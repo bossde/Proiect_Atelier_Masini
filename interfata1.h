@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 class Angajat{
 protected:
     static int id;

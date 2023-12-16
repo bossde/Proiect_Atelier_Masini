@@ -1,4 +1,5 @@
 #include "atelier.h"
+#include <iostream>
 
 Atelier::Atelier() {
     numAngajati = 0;
@@ -53,6 +54,14 @@ void Atelier::DeschideAtelier(Angajat* angajat) {
     else std::cout << "Atelierul a fost deja deschis ";
 }
 
+void Atelier::LuareInPrimireMasini(Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina, bool raman) {
+        if(numAngajati == 0){
+            std::cout << "Nu se pot adauga masini in atelier deoarece acesta nu a fost deschis! ";
+        }
+
+
+}
+
 Atelier::~Atelier() {
     for(int i = 0; i < MAX_ANGAJATI; i++){
         delete angajati[i];
@@ -62,4 +71,6 @@ Atelier::~Atelier() {
         delete masini[j];
     }
 }
+
+
 

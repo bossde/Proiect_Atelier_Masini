@@ -1,5 +1,6 @@
 #include "camion.h"
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 Camion::Camion(char* ID_citit, int nr_kilometri_citit, int anul_fabricatiei_citit, bool este_diesel_citit, double tonaj_citit) {
@@ -37,7 +38,9 @@ void Camion::afisare() {
 }
 
 double Camion::calcul_polita_asigurare() {
-    double valoare_polita = (2023 - anul_fabricatiei) * 300;
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    double valoare_polita = (tm.tm_year + 1900 - anul_fabricatiei) * 300;
 
     if(nr_kilometri > 800000){
         valoare_polita = valoare_polita + 700;
@@ -52,4 +55,8 @@ double Camion::calcul_polita_asigurare_discount() {
     double discount = 15 * valoare_polita_discount / 100;
 
     return valoare_polita_discount - discount;
+}
+
+const string Camion::tipMasina() const {
+    return "Camion";
 }

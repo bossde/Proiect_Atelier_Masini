@@ -1,6 +1,7 @@
 #pragma once
 #include "interfata2.h"
 #include <stdbool.h>
+#include <string>
 
 class Standard: public Masina{
     bool este_automat;
@@ -10,4 +11,5 @@ public:
     void afisare();
     double calcul_polita_asigurare();
     double calcul_polita_asigurare_discount();
+    const string tipMasina() const;
 };
