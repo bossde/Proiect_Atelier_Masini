@@ -4,7 +4,7 @@
 class Director:public Angajat{
 public:
     Director();
-    Director(char* , char* , int* , int* );
+    Director(char* , char* , int* , int* ,int );
     void afisare();
     double calcul_salariu();
     void editare_angajat(char*, char* ,int* ,int* );

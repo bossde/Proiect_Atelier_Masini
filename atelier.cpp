@@ -18,7 +18,7 @@ void Atelier::AdaugaAngajat(Angajat* angajat) {
     if(numAngajati < MAX_ANGAJATI){
         angajati[numAngajati++] = angajat;
     } else {
-        std::cout << "Atelierul a atins numarul maxim de angajati! ";
+        std::cout << "Atelierul a atins numarul maxim de angajati!\n";
     }
 }
 
@@ -38,28 +38,74 @@ void Atelier::AdaugaMasinaAsteptare(Masina* masina, bool raman) {
     }
 
     else if(numMasiniAsteptare >= MAX_MASINI_ASTEPTARE){
-        std::cout << "S-a atins numarul maxim de masini care asteapta la coada ";
+        std::cout << "S-a atins numarul maxim de masini care asteapta la coada.\n";
     }
 
     else if(raman == 0){
-        std::cout << "Clientul a decis sa plece ";
+        std::cout << "Clientul a decis sa plece.\n";
     }
 }
 
-void Atelier::DeschideAtelier(Angajat* angajat) {
+bool Atelier::esteDeschis() {
     if(numAngajati == 0){
-        AdaugaAngajat(angajat);
+        return false;
     }
 
-    else std::cout << "Atelierul a fost deja deschis ";
+    else return true;
 }
 
-void Atelier::LuareInPrimireMasini(Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina, bool raman) {
-        if(numAngajati == 0){
-            std::cout << "Nu se pot adauga masini in atelier deoarece acesta nu a fost deschis! ";
+bool Atelier::VerificaTipuriMasini(Masina* masina1, Masina* masina2, Masina* masina3, Masina* masina4) {
+    int contorMasiniStandard = 0;
+    int contorMasiniNestandard = 0;
+
+    auto verificaTipMasina = [&](Masina* masina) {
+        if(masina != nullptr) {
+            if (masina->tipMasina() == "Standard") {
+                contorMasiniStandard++;
+            } else if (masina->tipMasina() == "Autobuz" || masina->tipMasina() == "Camion") {
+                contorMasiniNestandard++;
+            }
+        }
+    };
+
+    verificaTipMasina(masina1);
+    verificaTipMasina(masina2);
+    verificaTipMasina(masina3);
+    verificaTipMasina(masina4);
+
+    return (contorMasiniNestandard <= 1 && contorMasiniStandard <= 3);
+}
+
+void Atelier::LuareInPrimireMasini(Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina, bool raman, Angajat* angajat) {
+    AdaugaAngajat(angajat);
+
+    if (VerificaTipuriMasini(PrimaMasina, aDouaMasina, aTreiaMasina, aPatraMasina)) {
+        if(PrimaMasina != nullptr) AdaugaMasina(PrimaMasina, raman);
+        if(aDouaMasina != nullptr) AdaugaMasina(aDouaMasina, raman);
+        if(aTreiaMasina != nullptr) AdaugaMasina(aTreiaMasina, raman);
+        if(aPatraMasina != nullptr) AdaugaMasina(aPatraMasina, raman);
+        std::cout << "Masinile au fost luate in primire de catre un angajat!\n";
+
+        if(PrimaMasina == nullptr){
+            numMasini++;
         }
 
+        if(aDouaMasina == nullptr){
+            numMasini++;
+        }
 
+        if(aTreiaMasina == nullptr){
+            numMasini++;
+        }
+
+        if(aPatraMasina == nullptr){
+            numMasini++;
+        }
+    }
+
+    else {
+        std::cout << "Angajatul nu poate avea in primire atatea masini de genul, el poate avea cel mult 3 masini standard si cel mult o masina nestandard!\n";
+    }
 }
 
 Atelier::~Atelier() {

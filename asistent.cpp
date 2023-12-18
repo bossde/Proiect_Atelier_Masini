@@ -10,9 +10,10 @@ Asistent::Asistent():Angajat(){
         this->data_nasterii[i] = 0;
     }
     coeficient_salariu = 1;
+    timp_estimat = 0;
 }
 
-Asistent::Asistent(char* nume_tast, char* prenume_tast, int* data_nasterii_tast, int* data_angajarii_tast){
+Asistent::Asistent(char* nume_tast, char* prenume_tast, int* data_nasterii_tast, int* data_angajarii_tast, int timp_estimat_tast):Angajat(){
     strcpy(nume,nume_tast);
     strcpy(prenume,prenume_tast);
     for(int i = 0; i < 8; i++){
@@ -20,6 +21,7 @@ Asistent::Asistent(char* nume_tast, char* prenume_tast, int* data_nasterii_tast,
         this->data_angajarii[i] = data_angajarii_tast[i];
     }
     coeficient_salariu = 1;
+    timp_estimat = timp_estimat_tast;
 }
 
 double Asistent::calcul_salariu() {
@@ -33,8 +35,8 @@ double Asistent::calcul_salariu() {
 }
 
 void Asistent::afisare() {
-    std :: cout << "Nume: " << this->nume << endl;
-    std :: cout << "Prenume: " << this->prenume << endl;
+    std :: cout << "Nume: " << this->nume << std :: endl;
+    std :: cout << "Prenume: " << this->prenume << std :: endl;
     std :: cout << "Data Nasterii: ";
     for(int i = 0; i < 8; i++){
         std :: cout << this->data_nasterii[i];

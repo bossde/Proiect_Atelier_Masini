@@ -12,9 +12,10 @@ Director::Director():Angajat() {
         this->data_nasterii[i] = 0;
     }
     coeficient_salariu = 2;
+    timp_estimat = 0;
 }
 
-Director::Director(char* nume_tastatura, char* prenume_tastatura, int* data_nasterii_tastatura, int* data_angajarii_tastatura):Angajat(){
+Director::Director(char* nume_tastatura, char* prenume_tastatura, int* data_nasterii_tastatura, int* data_angajarii_tastatura, int timp_estimat_tastatura):Angajat(){
     strcpy(nume,nume_tastatura);
     strcpy(prenume,prenume_tastatura);
     for(int i = 0; i < 8; i++){
@@ -22,6 +23,7 @@ Director::Director(char* nume_tastatura, char* prenume_tastatura, int* data_nast
         this->data_angajarii[i] = data_angajarii_tastatura[i];
     }
     coeficient_salariu = 2;
+    timp_estimat = timp_estimat_tastatura;
 }
 
 void Director::afisare(){

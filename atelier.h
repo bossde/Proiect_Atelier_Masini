@@ -1,5 +1,6 @@
 #include "interfata1.h"
 #include "interfata2.h"
+#pragma once
 
 class Atelier{
     static const int MAX_ANGAJATI = 10;
@@ -9,16 +10,20 @@ class Atelier{
     Angajat*  angajati[MAX_ANGAJATI];
     Masina* masini[MAX_MASINI];
     Masina* masini_asteptare[MAX_MASINI_ASTEPTARE];
+
     int numAngajati;
     int numMasini;
     int numMasiniAsteptare;
-    void AdaugaMasina(Masina* ,bool );
 
-public:
     void AdaugaAngajat(Angajat* );
-    Atelier();
+    void AdaugaMasina(Masina* ,bool );
     void AdaugaMasinaAsteptare(Masina* ,bool );
-    void DeschideAtelier(Angajat* );
-    void LuareInPrimireMasini(Masina* ,Masina* ,Masina*, Masina*, bool raman);
+    bool VerificaTipuriMasini(Masina* ,Masina* ,Masina* ,Masina* );
+public:
+    Atelier();
+    bool esteDeschis();
+    void LuareInPrimireMasini(Masina* ,Masina* ,Masina*, Masina*, bool ,Angajat* );
+    void afisare_masini_atelier() const;
+    void afisare_coada() const;
     ~Atelier();
 };

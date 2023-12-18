@@ -11,9 +11,10 @@ Mecanic::Mecanic():Angajat(){
         this->data_nasterii[i] = 0;
     }
     coeficient_salariu = 2;
+    timp_estimat = 0;
 }
 
-Mecanic::Mecanic(char* nume_tast, char* prenume_tast, int* data_nast_tast, int* data_angajarii_tast):Angajat(){
+Mecanic::Mecanic(char* nume_tast, char* prenume_tast, int* data_nast_tast, int* data_angajarii_tast, int timp_estimat_tast):Angajat(){
     strcpy(nume,nume_tast);
     strcpy(prenume,prenume_tast);
     for(int i = 0; i < 8; i++){
@@ -21,6 +22,7 @@ Mecanic::Mecanic(char* nume_tast, char* prenume_tast, int* data_nast_tast, int* 
         this->data_angajarii[i] = data_angajarii_tast[i];
     }
     coeficient_salariu = 1.5;
+    timp_estimat = timp_estimat_tast;
 }
 
 void Mecanic::afisare() {

@@ -10,3 +10,7 @@ Angajat::~Angajat() {
     id--;
 }
 
+const double Angajat::getTimpEstimat() const {
+    return timp_estimat;
+}
+

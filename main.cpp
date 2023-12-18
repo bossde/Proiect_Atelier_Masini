@@ -8,6 +8,8 @@
 #include "autobuze.cpp"
 #include "standard.h"
 #include "standard.cpp"
+#include "atelier.h"
+#include "atelier.cpp"
 using namespace std;
 
 int main() {
@@ -23,7 +25,7 @@ int main() {
     vec[1]->afisare();
      */
 
-    Masina* *vec2 = new Masina*[2];
+    Masina* *vec2 = new Masina*[4];
     char ID[7];
     int nr_km = 900000;
     int anul_fabricatiei = 2014;
@@ -39,6 +41,20 @@ int main() {
     vec2[0]->afisare();
     vec2[1] = new Camion(ID,nr_km,anul_fabricatiei,este_diesel,tonaj);
     vec2[1]->afisare();
+    vec2[2] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,true);
+    vec2[2]->afisare();
+    vec2[3] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,true);
+    vec2[3]->afisare();
 
+    /*Atelier a;
+    char numeAngajat[] = "NumeAngajat";
+    char prenumeAngajat[] = "PrenumeAngajat";
+    int data_nasterii_angajat[] = {1990, 1, 1};
+    int data_angajarii_angajat[] = {2020, 1, 1};
+
+    Angajat* ang = new Director(numeAngajat,prenumeAngajat,data_angajarii_angajat,data_angajarii_angajat);
+
+    a.LuareInPrimireMasini(nullptr,vec2[1], nullptr, nullptr,true,ang);
+    */
     return 0;
 }

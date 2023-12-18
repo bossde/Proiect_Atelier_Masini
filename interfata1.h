@@ -1,3 +1,4 @@
+//Angajat.h
 #pragma once
 class Angajat{
 protected:
@@ -7,8 +8,10 @@ protected:
     int data_nasterii[8];
     int data_angajarii[8];
     double coeficient_salariu;
+    int timp_estimat;
 public:
     Angajat();
+    const double getTimpEstimat() const;
     virtual inline void afisare() = 0;
     virtual inline double calcul_salariu() = 0;
     virtual inline void editare_angajat(char*, char*, int*, int*) = 0;
