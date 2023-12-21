@@ -17,13 +17,14 @@ class Atelier{
 
     void AdaugaAngajat(Angajat* );
     void AdaugaMasina(Masina* ,bool );
-    void AdaugaMasinaAsteptare(Masina* ,bool );
+    void AdaugaMasinaAsteptare(Masina* ,bool = true);
     bool VerificaTipuriMasini(Masina* ,Masina* ,Masina* ,Masina* );
 public:
     Atelier();
-    bool esteDeschis();
-    void LuareInPrimireMasini(Masina* ,Masina* ,Masina*, Masina*, bool ,Angajat* );
+    bool esteDeschis() const;
+    void luare_in_primire_masini(Angajat* ,bool ,Masina* = nullptr ,Masina* = nullptr,Masina* = nullptr, Masina* = nullptr);
     void afisare_masini_atelier() const;
     void afisare_coada() const;
+    void optiune_asteptare(Masina* ,int ,bool );
     ~Atelier();
 };

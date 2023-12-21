@@ -4,6 +4,7 @@
 Atelier::Atelier() {
     numAngajati = 0;
     numMasini = 0;
+    numMasiniAsteptare = 0;
 
     for(int i = 0; i < MAX_ANGAJATI; i++){
         angajati[i] = nullptr;
@@ -11,6 +12,10 @@ Atelier::Atelier() {
 
     for(int i = 0; i < MAX_MASINI; i++){
         masini[i] = nullptr;
+    }
+
+    for(int i = 0; i < MAX_MASINI_ASTEPTARE; i++){
+        masini_asteptare[i] = nullptr;
     }
 }
 
@@ -46,7 +51,7 @@ void Atelier::AdaugaMasinaAsteptare(Masina* masina, bool raman) {
     }
 }
 
-bool Atelier::esteDeschis() {
+bool Atelier::esteDeschis() const {
     if(numAngajati == 0){
         return false;
     }
@@ -76,7 +81,7 @@ bool Atelier::VerificaTipuriMasini(Masina* masina1, Masina* masina2, Masina* mas
     return (contorMasiniNestandard <= 1 && contorMasiniStandard <= 3);
 }
 
-void Atelier::LuareInPrimireMasini(Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina, bool raman, Angajat* angajat) {
+void Atelier::luare_in_primire_masini(Angajat* angajat, bool raman, Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina) {
     AdaugaAngajat(angajat);
 
     if (VerificaTipuriMasini(PrimaMasina, aDouaMasina, aTreiaMasina, aPatraMasina)) {
@@ -107,6 +112,31 @@ void Atelier::LuareInPrimireMasini(Masina* PrimaMasina, Masina* aDouaMasina, Mas
         std::cout << "Angajatul nu poate avea in primire atatea masini de genul, el poate avea cel mult 3 masini standard si cel mult o masina nestandard!\n";
     }
 }
+
+void Atelier::optiune_asteptare(Masina* masina, int nr_angajat, bool raman) {
+    for(int i = 0; i < 4; i++){
+        if(masini[4 * nr_angajat + i] == nullptr){
+            return;
+        }
+    }
+
+    for(int i = 0; i < 4; i++){
+        if(masini_asteptare[4 * nr_angajat + i] == nullptr){
+            if (angajati[nr_angajat] != nullptr) {
+                cout << "Mașina a fost adăugată la coada angajatului " << nr_angajat << ".\n";
+                AdaugaMasinaAsteptare(masina, raman);
+            } else {
+                cout << "Angajatul " << nr_angajat << " nu este disponibil. Mașina a fost adăugată în mod automat la primul angajat liber.\n";
+                AdaugaMasina(masina, raman);
+            }
+            return;
+        }
+    }
+
+    std :: cout << "Angajatul " << nr_angajat << " a atins numărul maxim de mașini în atelier și la coadă! ";
+    return;
+}
+
 
 Atelier::~Atelier() {
     for(int i = 0; i < MAX_ANGAJATI; i++){
