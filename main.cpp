@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <limits>
 #include "Director.h"
 #include "functii_operationale.h"
 #include "functii_operationale.cpp"
@@ -10,51 +12,55 @@
 #include "standard.cpp"
 #include "atelier.h"
 #include "atelier.cpp"
+#include "asistent.h"
+#include "asistent.cpp"
+#include "mecanic.h"
 using namespace std;
 
 int main() {
-    Angajat* *vec = new Angajat*[2];
-    char nume[30], prenume[30];
-    int data_nasterii[8], data_angajarii[8];
+    Atelier atelier;
 
-    //citire_date(nume,prenume,data_nasterii,data_angajarii);
+    int numarAngajati;
+    std::cout << "Introduceti numarul de angajati pe care doriti sa-l cititi: ";
+    std::cin >> numarAngajati;
 
-    /*vec[0] = new Director(nume,prenume,data_nasterii,data_angajarii);
-    vec[0]->afisare();
-    vec[1] = new Director(nume,prenume,data_nasterii,data_angajarii);
-    vec[1]->afisare();
-     */
+    for (int i = 0; i < numarAngajati; ++i) {
+        char nume[30], prenume[30];
+        int data_nasterii[8], data_angajarii[8];
 
-    Masina* *vec2 = new Masina*[4];
-    char ID[7];
-    int nr_km = 900000;
-    int anul_fabricatiei = 2014;
-    bool este_diesel = true;
+        citire_date(nume, prenume, data_nasterii, data_angajarii);
 
-    double tonaj = 7.5;
+        // Adaugăm un angajat în funcție de tip
+        int tipAngajat;
+        std::cout << "Introduceti tipul angajatului (1 - Mecanic, 2 - Director, 3 - Asistent): ";
+        std::cin >> tipAngajat;
 
-    for(int i = 0; i < 7; i++){
-        ID[i] = 'a' + i;
+        switch (tipAngajat) {
+            case 1:
+                atelier.AdaugaAngajat(new Mecanic(nume, prenume, data_nasterii, data_angajarii,5));
+                break;
+            case 2:
+                atelier.AdaugaAngajat(new Director(nume, prenume, data_nasterii, data_angajarii,4));
+                break;
+            case 3:
+                atelier.AdaugaAngajat(new Asistent(nume, prenume, data_nasterii, data_angajarii,3));
+                break;
+            default:
+                std::cout << "Tip de angajat invalid.\n";
+        }
     }
 
-    vec2[0] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,true);
-    vec2[0]->afisare();
-    vec2[1] = new Camion(ID,nr_km,anul_fabricatiei,este_diesel,tonaj);
-    vec2[1]->afisare();
-    vec2[2] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,true);
-    vec2[2]->afisare();
-    vec2[3] = new Standard(ID,nr_km,anul_fabricatiei,este_diesel,true);
-    vec2[3]->afisare();
+    introducere_masini(atelier,numarAngajati);
 
-    /*Atelier a;
-    char numeAngajat[] = "NumeAngajat";
-    char prenumeAngajat[] = "PrenumeAngajat";
-    int data_nasterii_angajat[] = {1990, 1, 1};
-    int data_angajarii_angajat[] = {2020, 1, 1};
+    int optiune;
+    do {
+        afisareMeniu();
+        std::cout << "Alegeți o opțiune: ";
+        std::cin >> optiune;
 
-    Angajat* ang = new Director(numeAngajat,prenumeAngajat,data_angajarii_angajat,data_angajarii_angajat);
+        optiune_executie(optiune,atelier);
+    } while (optiune != 6);
 
-    a.LuareInPrimireMasini(nullptr,vec2[1], nullptr, nullptr,true,ang);
-    */
+
     return 0;
 }

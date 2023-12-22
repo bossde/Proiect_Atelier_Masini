@@ -11,5 +11,5 @@ public:
     void afisare();
     double calcul_polita_asigurare();
     double calcul_polita_asigurare_discount();
-    const string tipMasina() const;
+    const std::string tipMasina() const;
 };

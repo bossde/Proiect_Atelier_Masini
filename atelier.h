@@ -15,16 +15,19 @@ class Atelier{
     int numMasini;
     int numMasiniAsteptare;
 
-    void AdaugaAngajat(Angajat* );
     void AdaugaMasina(Masina* ,bool );
+    void AdaugaMasinaAnumitAngajat(Masina* ,int );
     void AdaugaMasinaAsteptare(Masina* ,bool = true);
     bool VerificaTipuriMasini(Masina* ,Masina* ,Masina* ,Masina* );
 public:
     Atelier();
+    void AdaugaAngajat(Angajat* );
     bool esteDeschis() const;
-    void luare_in_primire_masini(Angajat* ,bool ,Masina* = nullptr ,Masina* = nullptr,Masina* = nullptr, Masina* = nullptr);
+    void luare_in_primire_masini(bool ,Masina* = nullptr ,Masina* = nullptr,Masina* = nullptr, Masina* = nullptr);
     void afisare_masini_atelier() const;
+    void adaugare_masina_angajat_precizat(int ,Masina* = nullptr);
     void afisare_coada() const;
-    void optiune_asteptare(Masina* ,int ,bool );
+    void afisare_angajati() const;
+    void optiune_asteptare(Masina* ,int );
     ~Atelier();
 };

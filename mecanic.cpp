@@ -1,5 +1,4 @@
 #include "mecanic.h"
-#include "interfata1.h"
 #include <iostream>
 #include <cstring>
 

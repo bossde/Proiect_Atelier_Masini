@@ -27,6 +27,23 @@ void Atelier::AdaugaAngajat(Angajat* angajat) {
     }
 }
 
+/*void Atelier::AdaugaMasinaAnumitAngajat(Masina* masina, int angajat) {
+    if(angajat >= numAngajati){
+        std :: cout << "Nu exista acest angajat!\n";
+        return;
+    }
+
+    for(int i = 0; i < 4; i++){
+        if(masini[4 * angajat + i] == nullptr){
+            masini[4 * angajat + i] = masina;
+            return;
+        }
+    }
+
+    cout << "Angajatul cerut nu este disponibil!\n"
+}
+ */
+
 void Atelier::AdaugaMasina(Masina* masina, bool raman) {
     if(numMasini < MAX_MASINI){
         masini[numMasini++] = masina;
@@ -50,6 +67,7 @@ void Atelier::AdaugaMasinaAsteptare(Masina* masina, bool raman) {
         std::cout << "Clientul a decis sa plece.\n";
     }
 }
+
 
 bool Atelier::esteDeschis() const {
     if(numAngajati == 0){
@@ -81,9 +99,7 @@ bool Atelier::VerificaTipuriMasini(Masina* masina1, Masina* masina2, Masina* mas
     return (contorMasiniNestandard <= 1 && contorMasiniStandard <= 3);
 }
 
-void Atelier::luare_in_primire_masini(Angajat* angajat, bool raman, Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina) {
-    AdaugaAngajat(angajat);
-
+void Atelier::luare_in_primire_masini(bool raman, Masina* PrimaMasina, Masina* aDouaMasina, Masina* aTreiaMasina, Masina* aPatraMasina) {
     if (VerificaTipuriMasini(PrimaMasina, aDouaMasina, aTreiaMasina, aPatraMasina)) {
         if(PrimaMasina != nullptr) AdaugaMasina(PrimaMasina, raman);
         if(aDouaMasina != nullptr) AdaugaMasina(aDouaMasina, raman);
@@ -113,9 +129,15 @@ void Atelier::luare_in_primire_masini(Angajat* angajat, bool raman, Masina* Prim
     }
 }
 
-void Atelier::optiune_asteptare(Masina* masina, int nr_angajat, bool raman) {
+void Atelier::optiune_asteptare(Masina* masina, int nr_angajat) {
+    if(nr_angajat >= numAngajati){
+        cout << "Nu exista angajatul specificat!\n";
+        return;
+    }
+
     for(int i = 0; i < 4; i++){
         if(masini[4 * nr_angajat + i] == nullptr){
+            masini[4 * nr_angajat + i] = masina;
             return;
         }
     }
@@ -124,10 +146,16 @@ void Atelier::optiune_asteptare(Masina* masina, int nr_angajat, bool raman) {
         if(masini_asteptare[4 * nr_angajat + i] == nullptr){
             if (angajati[nr_angajat] != nullptr) {
                 cout << "Mașina a fost adăugată la coada angajatului " << nr_angajat << ".\n";
-                AdaugaMasinaAsteptare(masina, raman);
+                masini_asteptare[4 * nr_angajat + i] == masina;
+                return;
             } else {
                 cout << "Angajatul " << nr_angajat << " nu este disponibil. Mașina a fost adăugată în mod automat la primul angajat liber.\n";
-                AdaugaMasina(masina, raman);
+                for(int i = 0; i < numMasini; i++){
+                    if(masini_asteptare[i] == nullptr){
+                        masini_asteptare[i] = masina;
+                        return;
+                    }
+                }
             }
             return;
         }
@@ -135,6 +163,45 @@ void Atelier::optiune_asteptare(Masina* masina, int nr_angajat, bool raman) {
 
     std :: cout << "Angajatul " << nr_angajat << " a atins numărul maxim de mașini în atelier și la coadă! ";
     return;
+}
+
+void Atelier::adaugare_masina_angajat_precizat(int nrAngajat, Masina* masina) {
+    if(nrAngajat > numAngajati){
+        std :: cout << "Angajatul cerut nu exista!";
+        return;
+    }
+
+    for(int i = 0; i < numAngajati; i++){
+        if(i == nrAngajat){
+            for(int j = 0; j < 4; j++){
+                if(masini[4*i + j] == nullptr){
+                    masini[4*i + j] = masina;
+                    break;
+                }
+            }
+        }
+    }
+
+    cout << "Angajatul cerut nu are locuri disponibile!";
+    return;
+}
+
+void Atelier::afisare_coada() const {
+    for(int i = 0; i < numMasiniAsteptare; i++){
+        masini_asteptare[i]->afisare();
+    }
+}
+
+void Atelier::afisare_masini_atelier() const {
+    for(int i = 0; i < numMasini; i++){
+        masini[i]->afisare();
+    }
+}
+
+void Atelier::afisare_angajati() const {
+    for(int i = 0; i < numAngajati; i++){
+        angajati[i]->afisare();
+    }
 }
 
 
